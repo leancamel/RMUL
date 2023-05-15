@@ -26,8 +26,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "led.h"
-#include "buzzer.h"
 #include "serial.h"
+#include "INS_Task.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -157,9 +157,11 @@ void StartLedTask(void *argument)
 void StartUserTask(void *argument)
 {
 	/* USER CODE BEGIN StartUserTask */
+	INS_Init();
 	/* Infinite loop */
 	for (;;)
 	{
+		INS_Task();
 		osDelay(1);
 	}
 	/* USER CODE END StartUserTask */

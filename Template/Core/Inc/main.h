@@ -57,8 +57,13 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define IST8310_RSTN_Pin GPIO_PIN_6
+#define IST8310_RSTN_GPIO_Port GPIOG
 #define LED_R_Pin GPIO_PIN_12
 #define LED_R_GPIO_Port GPIOH
+#define IST8310_DRDY_Pin GPIO_PIN_3
+#define IST8310_DRDY_GPIO_Port GPIOG
+#define IST8310_DRDY_EXTI_IRQn EXTI3_IRQn
 #define LED_G_Pin GPIO_PIN_11
 #define LED_G_GPIO_Port GPIOH
 #define LED_B_Pin GPIO_PIN_10
@@ -67,7 +72,7 @@ void Error_Handler(void);
 #define Buzzer_GPIO_Port GPIOD
 
 /* USER CODE BEGIN Private defines */
-
+#define USE_IST8310 1
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

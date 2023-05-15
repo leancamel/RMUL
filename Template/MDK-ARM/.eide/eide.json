@@ -33,7 +33,11 @@
             "folders": [
               {
                 "name": "App",
-                "files": [],
+                "files": [
+                  {
+                    "path": "../App/Src/INS_Task.c"
+                  }
+                ],
                 "folders": []
               },
               {
@@ -44,6 +48,9 @@
                   },
                   {
                     "path": "../Core/Src/gpio.c"
+                  },
+                  {
+                    "path": "../Core/Src/i2c.c"
                   },
                   {
                     "path": "../Core/Src/main.c"
@@ -71,6 +78,12 @@
                 "files": [
                   {
                     "path": "../Hardware/Src/buzzer.c"
+                  },
+                  {
+                    "path": "../Hardware/Src/ist8310driver_middleware.c"
+                  },
+                  {
+                    "path": "../Hardware/Src/ist8310driver.c"
                   },
                   {
                     "path": "../Hardware/Src/led.c"
@@ -144,6 +157,12 @@
               },
               {
                 "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c"
               },
               {
                 "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c"

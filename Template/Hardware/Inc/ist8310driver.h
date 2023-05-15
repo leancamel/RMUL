@@ -1,0 +1,49 @@
+/**
+ * @file       IST8310driver.c/h
+ * @brief      ist8310 is a 3-axis digital magnetometer, the file includes initialization function,
+ *             read magnetic field strength data function.
+ * @note       IST8310 only support I2C
+ * @history
+ *  Version    Date            Author          Modification
+ *  V1.0.0     Dec-26-2018     RM              1. 完成
+ *
+ */
+
+#ifndef IST8310DRIVER_H
+#define IST8310DRIVER_H
+
+#include "main.h"
+
+#define IST8310_DATA_READY_BIT 2
+
+#define IST8310_NO_ERROR 0x00
+#define IST8310_NO_SENSOR 0x40
+
+typedef struct ist8310_real_data_t
+{
+	uint8_t status;
+	float mag[3];
+} ist8310_real_data_t;
+
+/**
+ * @brief          初始化IST8310
+ * @param[in]      none
+ * @retval         error value
+ */
+extern uint8_t ist8310_init(void);
+
+/**
+ * @brief          如果已经通过I2C的DMA方式读取到了从STAT1到DATAZL的数据，可以使用这个函数进行处理
+ * @param[in]      status_buf:数据指针,从STAT1(0x02) 寄存器到 DATAZL(0x08)寄存器
+ * @param[out]     ist8310_real_data:ist8310的数据结构
+ * @retval         none
+ */
+extern void ist8310_read_over(uint8_t *status_buf, ist8310_real_data_t *ist8310_real_data);
+
+/**
+ * @brief          通过读取磁场数据
+ * @param[out]     磁场数组
+ * @retval         none
+ */
+extern void ist8310_read_mag(float mag[3]);
+#endif

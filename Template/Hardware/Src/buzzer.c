@@ -1,4 +1,5 @@
 #include "buzzer.h"
+
 /**
  * @brief 关闭蜂鸣器
  */
@@ -6,6 +7,7 @@ void Buzzer_Off(void)
 {
 	__HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_3, 0);
 }
+
 /**
  * @brief 设置蜂鸣器的定时器时基单元
  * @param PSC 预分频系数
@@ -17,6 +19,7 @@ void Buzzer_Set_Timer(uint16_t PSC, uint16_t ARR)
 	__HAL_TIM_SetAutoreload(&htim4, ARR);
 	__HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_3, (ARR + 1) / 2);
 }
+
 /**
  * @brief 以一定的频率开启蜂鸣器
  * @param frequency 蜂鸣器频率，0~20 ,单位 kHz
