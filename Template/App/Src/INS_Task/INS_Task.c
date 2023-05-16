@@ -60,15 +60,15 @@ void AHRS_update(float quat[4], float gyro[3], float accel[3], float mag[3])
 /**
  * @brief 四元数转换为欧拉角
  * @param quat	四元数
- * @param yaw	yaw轴偏角，单位 rad/s
- * @param pitch	pitch轴偏角，单位 rad/s
- * @param roll	roll轴偏角，单位 rad/s
+ * @param yaw	yaw轴偏角，单位 rad
+ * @param pitch	pitch轴偏角，单位 rad
+ * @param roll	roll轴偏角，单位 rad
  */
-void get_angle(float quat[4], float *yaw, float *pitch, float *roll)
+void get_angle(float quat[4], float angle[3])
 {
-    *yaw = atan2f(2.0f*(quat[0]*quat[3]+quat[1]*quat[2]), 2.0f*(quat[0]*quat[0]+quat[1]*quat[1])-1.0f);
-    *pitch = asinf(-2.0f*(quat[1]*quat[3]-quat[0]*quat[2]));
-    *roll = atan2f(2.0f*(quat[0]*quat[1]+quat[2]*quat[3]),2.0f*(quat[0]*quat[0]+quat[3]*quat[3])-1.0f);
+    angle[0] = atan2f(2.0f*(quat[0]*quat[3]+quat[1]*quat[2]), 2.0f*(quat[0]*quat[0]+quat[1]*quat[1])-1.0f);
+    angle[1] = asinf(-2.0f*(quat[1]*quat[3]-quat[0]*quat[2]));
+    angle[2] = atan2f(2.0f*(quat[0]*quat[1]+quat[2]*quat[3]),2.0f*(quat[0]*quat[0]+quat[3]*quat[3])-1.0f);
 }
 
 /**
@@ -108,9 +108,9 @@ void INS_Task(void)
 	IMU_Temp_Control();
 
 	AHRS_update(INS_quat, bmi088_data.gyro, bmi088_data.accel, ist8310_data.mag);
-	get_angle(INS_quat, INS_angle + 0, INS_angle + 1, INS_angle + 2);
+	get_angle(INS_quat, INS_angle);
 
-	printf("%.2f, %.2f, %.2f\n",INS_angle[0], INS_angle[1], INS_angle[2]);
+	// printf("%.2f, %.2f, %.2f, %.2f\n",INS_angle[0], INS_angle[1], INS_angle[2], bmi088_data.temp);
 	// printf("%.3f, %.3f, %.3f\n", bmi088_data.accel[0], bmi088_data.accel[1], bmi088_data.accel[2]);
 	// printf("%.3f, %.3f, %.3f\n",bmi088_data.gyro[0], bmi088_data.gyro[1], bmi088_data.gyro[2]);
 	// printf("%.2f, %.2f, %.2f\n",ist8310_data.mag[0], ist8310_data.mag[1], ist8310_data.mag[2]);
