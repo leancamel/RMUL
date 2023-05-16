@@ -33,48 +33,60 @@
             "folders": [
               {
                 "name": "App",
-                "files": [
+                "files": [],
+                "folders": [
                   {
-                    "path": "../App/Src/INS_Task.c"
+                    "name": "INS_Task",
+                    "files": [
+                      {
+                        "path": "../App/Src/INS_Task/BMI088driver.c"
+                      },
+                      {
+                        "path": "../App/Src/INS_Task/INS_Task.c"
+                      },
+                      {
+                        "path": "../App/Src/INS_Task/ist8310driver.c"
+                      }
+                    ],
+                    "folders": []
                   }
-                ],
-                "folders": []
+                ]
               },
               {
                 "name": "Core",
                 "files": [
                   {
-                    "path": "../Core/Src/dma.c"
-                  },
-                  {
-                    "path": "../Core/Src/freertos.c"
+                    "path": "../Core/Src/main.c"
                   },
                   {
                     "path": "../Core/Src/gpio.c"
                   },
                   {
+                    "path": "../Core/Src/freertos.c"
+                  },
+                  {
+                    "path": "../Core/Src/dma.c"
+                  },
+                  {
                     "path": "../Core/Src/i2c.c"
                   },
                   {
-                    "path": "../Core/Src/main.c"
-                  },
-                  {
                     "path": "../Core/Src/spi.c"
-                  },
-                  {
-                    "path": "../Core/Src/stm32f4xx_hal_msp.c"
-                  },
-                  {
-                    "path": "../Core/Src/stm32f4xx_hal_timebase_tim.c"
-                  },
-                  {
-                    "path": "../Core/Src/stm32f4xx_it.c"
                   },
                   {
                     "path": "../Core/Src/tim.c"
                   },
                   {
                     "path": "../Core/Src/usart.c"
+                  },
+                  {
+                    "path": "../Core/Src/stm32f4xx_it.c"
+                  },
+                  {
+                    "path": "../Core/Src/stm32f4xx_hal_msp.c"
+                  },
+                  {
+                    "path": "../Core/Src/stm32f4xx_hal_timebase_tim.c"
                   }
                 ],
                 "folders": []
@@ -91,22 +103,16 @@
                     "name": "Board",
                     "files": [
                       {
-                        "path": "../Hardware/Src/Board/buzzer.c"
+                        "path": "../Hardware/Src/Board/BMI088Middleware.c"
                       },
                       {
-                        "path": "../Hardware/Src/Board/ist8310driver.c"
+                        "path": "../Hardware/Src/Board/buzzer.c"
                       },
                       {
                         "path": "../Hardware/Src/Board/ist8310driver_middleware.c"
                       },
                       {
                         "path": "../Hardware/Src/Board/led.c"
-                      },
-                      {
-                        "path": "../Hardware/Src/Board/BMI088Middleware.c"
-                      },
-                      {
-                        "path": "../Hardware/Src/Board/BMI088driver.c"
                       }
                     ],
                     "folders": []
@@ -116,6 +122,9 @@
               {
                 "name": "User_Lib",
                 "files": [
+                  {
+                    "path": "../User_Lib/Src/MahonyAHRS.c"
+                  },
                   {
                     "path": "../User_Lib/Src/pid.c"
                   }
@@ -408,7 +417,7 @@
           "../Drivers/CMSIS/Device/ST/STM32F4xx/Include",
           "../Drivers/CMSIS/Include",
           "../Hardware/Inc",
-          "../App/Inc",
+          "../App/Inc/INS_Task",
           "../User_Lib/Inc",
           "../Hardware/Inc/Board",
           "RTE/_Template"

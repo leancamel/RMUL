@@ -22,17 +22,14 @@
 #include "stm32f4xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "INS_Task.h"
 #include "ist8310driver.h"
 #include "BMI088driver.h"
-#include "FreeRTOS.h"
-#include "task.h"
-#include "cmsis_os.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN TD */
-extern TaskHandle_t INS_task_local_handler;
-extern uint8_t INT_Task_Start;
+
 /* USER CODE END TD */
 
 /* Private define ------------------------------------------------------------*/
@@ -273,21 +270,6 @@ void DMA2_Stream3_IRQHandler(void)
 
 /* USER CODE BEGIN 1 */
 /**
- * @brief 唤醒 INS_Task
- */
-void INS_Task_Resume(void)
-{
-	if(INT_Task_Start)
-	{
-		if (xTaskGetSchedulerState() != taskSCHEDULER_NOT_STARTED)
-		{
-			static BaseType_t xHigherPriorityTaskWoken;
-			vTaskNotifyGiveFromISR(INS_task_local_handler, &xHigherPriorityTaskWoken);
-			portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
-		}
-	}
-}
-/**
  * @brief 外部中断回调函数
  */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
@@ -297,16 +279,13 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 		case IST8310_DRDY_Pin:
 			#if (USE_IST8310 == 1)
 				ist8310_read_mag(ist8310_data.mag);
-				INS_Task_Resume();
 			#endif
 			break;
 		case INT1_ACCEL_Pin:
-			BMI088_Read_Accel(bmi088_data.accel);
-			INS_Task_Resume();
+			INT1_ACCEL_Func();
 			break;
 		case INT1_GRYO_Pin:
-			BMI088_Read_Gyro(bmi088_data.gyro);
-			INS_Task_Resume();
+			INT1_Gyro_Func();
 			break;
 		default:
 			break;
