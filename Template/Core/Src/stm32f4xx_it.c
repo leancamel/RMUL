@@ -23,12 +23,16 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "ist8310driver.h"
-#include "INS_Task.h"
+#include "BMI088driver.h"
+#include "FreeRTOS.h"
+#include "task.h"
+#include "cmsis_os.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN TD */
-
+extern TaskHandle_t INS_task_local_handler;
+extern uint8_t INT_Task_Start;
 /* USER CODE END TD */
 
 /* Private define ------------------------------------------------------------*/
@@ -53,7 +57,10 @@
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-extern ist8310_real_data_t ist8310_data;
+#if (USE_IST8310 == 1)
+	extern ist8310_real_data_t ist8310_data;
+#endif
+extern bmi088_real_data_t bmi088_data;
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
@@ -168,14 +175,40 @@ void DebugMon_Handler(void)
 void EXTI3_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI3_IRQn 0 */
-	#if (USE_IST8310 == 1)
-		ist8310_read_mag(ist8310_data.mag);
-	#endif
+
   /* USER CODE END EXTI3_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(IST8310_DRDY_Pin);
   /* USER CODE BEGIN EXTI3_IRQn 1 */
 
   /* USER CODE END EXTI3_IRQn 1 */
+}
+
+/**
+  * @brief This function handles EXTI line4 interrupt.
+  */
+void EXTI4_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI4_IRQn 0 */
+
+  /* USER CODE END EXTI4_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(INT1_ACCEL_Pin);
+  /* USER CODE BEGIN EXTI4_IRQn 1 */
+
+  /* USER CODE END EXTI4_IRQn 1 */
+}
+
+/**
+  * @brief This function handles EXTI line[9:5] interrupts.
+  */
+void EXTI9_5_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI9_5_IRQn 0 */
+
+  /* USER CODE END EXTI9_5_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(INT1_GRYO_Pin);
+  /* USER CODE BEGIN EXTI9_5_IRQn 1 */
+
+  /* USER CODE END EXTI9_5_IRQn 1 */
 }
 
 /**
@@ -207,5 +240,44 @@ void USART1_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
-
+/**
+ * @brief 唤醒 INS_Task
+ */
+void INS_Task_Resume(void)
+{
+	if(INT_Task_Start)
+	{
+		if (xTaskGetSchedulerState() != taskSCHEDULER_NOT_STARTED)
+		{
+			static BaseType_t xHigherPriorityTaskWoken;
+			vTaskNotifyGiveFromISR(INS_task_local_handler, &xHigherPriorityTaskWoken);
+			portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+		}
+	}
+}
+/**
+ * @brief 外部中断回调函数
+ */
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	switch(GPIO_Pin)
+	{
+		case IST8310_DRDY_Pin:
+			#if (USE_IST8310 == 1)
+				ist8310_read_mag(ist8310_data.mag);
+				INS_Task_Resume();
+			#endif
+			break;
+		case INT1_ACCEL_Pin:
+			BMI088_Read_Accel(bmi088_data.accel);
+			INS_Task_Resume();
+			break;
+		case INT1_GRYO_Pin:
+			BMI088_Read_Gyro(bmi088_data.gyro);
+			INS_Task_Resume();
+			break;
+		default:
+			break;
+	}
+}
 /* USER CODE END 1 */

@@ -88,22 +88,22 @@
                     "name": "Board",
                     "files": [
                       {
-                        "path": "../Hardware/Src/Board/BMI088driver.c"
-                      },
-                      {
-                        "path": "../Hardware/Src/Board/BMI088Middleware.c"
-                      },
-                      {
                         "path": "../Hardware/Src/Board/buzzer.c"
-                      },
-                      {
-                        "path": "../Hardware/Src/Board/ist8310driver_middleware.c"
                       },
                       {
                         "path": "../Hardware/Src/Board/ist8310driver.c"
                       },
                       {
+                        "path": "../Hardware/Src/Board/ist8310driver_middleware.c"
+                      },
+                      {
                         "path": "../Hardware/Src/Board/led.c"
+                      },
+                      {
+                        "path": "../Hardware/Src/Board/BMI088Middleware.c"
+                      },
+                      {
+                        "path": "../Hardware/Src/Board/BMI088driver.c"
                       }
                     ],
                     "folders": []

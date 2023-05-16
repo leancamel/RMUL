@@ -6,7 +6,10 @@
     ],
 	"settings": {
 		"files.associations": {
-			"pid.h": "c"
+			"bmi088driver.h": "c",
+			"ist8310driver.h": "c",
+			"freertos.h": "c",
+			"freertosconfig.h": "c"
 		}
 	},
     "extensions": {}
