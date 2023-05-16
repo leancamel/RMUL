@@ -9,8 +9,8 @@
  *
  */
 
-#ifndef IST8310DRIVER_H
-#define IST8310DRIVER_H
+#ifndef __IST8310DRIVER_H
+#define __IST8310DRIVER_H
 
 #include "main.h"
 

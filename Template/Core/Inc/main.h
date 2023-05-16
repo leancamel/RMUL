@@ -70,6 +70,10 @@ void Error_Handler(void);
 #define LED_B_GPIO_Port GPIOH
 #define Buzzer_Pin GPIO_PIN_14
 #define Buzzer_GPIO_Port GPIOD
+#define CS1_ACCEL_Pin GPIO_PIN_4
+#define CS1_ACCEL_GPIO_Port GPIOA
+#define CS1_GYRO_Pin GPIO_PIN_0
+#define CS1_GYRO_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 #define USE_IST8310 1

@@ -15,8 +15,8 @@
   @endverbatim
   ****************************(C) COPYRIGHT 2019 DJI****************************
   */
-#ifndef IST8310DRIVER_MIDDLEWARE_H
-#define IST8310DRIVER_MIDDLEWARE_H
+#ifndef __IST8310DRIVER_MIDDLEWARE_H
+#define __IST8310DRIVER_MIDDLEWARE_H
 
 #include "main.h"
 

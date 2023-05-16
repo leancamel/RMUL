@@ -6,10 +6,7 @@
     ],
 	"settings": {
 		"files.associations": {
-			"ins_task.h": "c",
-			"ist8310driver.h": "c",
-			"ist8310driver_middleware.h": "c",
-			"main.h": "c"
+			"pid.h": "c"
 		}
 	},
     "extensions": {}

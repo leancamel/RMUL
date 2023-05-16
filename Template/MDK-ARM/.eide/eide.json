@@ -56,6 +56,9 @@
                     "path": "../Core/Src/main.c"
                   },
                   {
+                    "path": "../Core/Src/spi.c"
+                  },
+                  {
                     "path": "../Core/Src/stm32f4xx_hal_msp.c"
                   },
                   {
@@ -77,26 +80,43 @@
                 "name": "Hardware",
                 "files": [
                   {
-                    "path": "../Hardware/Src/buzzer.c"
-                  },
-                  {
-                    "path": "../Hardware/Src/ist8310driver_middleware.c"
-                  },
-                  {
-                    "path": "../Hardware/Src/ist8310driver.c"
-                  },
-                  {
-                    "path": "../Hardware/Src/led.c"
-                  },
-                  {
                     "path": "../Hardware/Src/serial.c"
                   }
                 ],
-                "folders": []
+                "folders": [
+                  {
+                    "name": "Board",
+                    "files": [
+                      {
+                        "path": "../Hardware/Src/Board/BMI088driver.c"
+                      },
+                      {
+                        "path": "../Hardware/Src/Board/BMI088Middleware.c"
+                      },
+                      {
+                        "path": "../Hardware/Src/Board/buzzer.c"
+                      },
+                      {
+                        "path": "../Hardware/Src/Board/ist8310driver_middleware.c"
+                      },
+                      {
+                        "path": "../Hardware/Src/Board/ist8310driver.c"
+                      },
+                      {
+                        "path": "../Hardware/Src/Board/led.c"
+                      }
+                    ],
+                    "folders": []
+                  }
+                ]
               },
               {
                 "name": "User_Lib",
-                "files": [],
+                "files": [
+                  {
+                    "path": "../User_Lib/Src/pid.c"
+                  }
+                ],
                 "folders": []
               }
             ]
@@ -163,6 +183,9 @@
               },
               {
                 "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c"
+              },
+              {
+                "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c"
               },
               {
                 "path": "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c"
@@ -384,6 +407,7 @@
           "../Hardware/Inc",
           "../App/Inc",
           "../User_Lib/Inc",
+          "../Hardware/Inc/Board",
           "RTE/_Template"
         ],
         "libList": [],
