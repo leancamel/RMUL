@@ -4,13 +4,6 @@
             "path": "."
         }
     ],
-	"settings": {
-		"files.associations": {
-			"bmi088driver.h": "c",
-			"ist8310driver.h": "c",
-			"freertos.h": "c",
-			"freertosconfig.h": "c"
-		}
-	},
+    "settings": {},
     "extensions": {}
 }

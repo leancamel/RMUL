@@ -216,7 +216,7 @@ void BMI088_Read_Gyro(float gyro[3])
 	}
 }
 
-void BMI088_Read_Temp(float *temperate)
+float BMI088_Read_Temp(void)
 {
 	uint8_t buf[2] = {0, 0};
 	int16_t bmi088_raw_temp;
@@ -230,7 +230,7 @@ void BMI088_Read_Temp(float *temperate)
 		bmi088_raw_temp -= 2048;
 	}
 
-	*temperate = bmi088_raw_temp * BMI088_TEMP_FACTOR + BMI088_TEMP_OFFSET;
+	return (bmi088_raw_temp * BMI088_TEMP_FACTOR + BMI088_TEMP_OFFSET);
 }
 
 void BMI088_read(float gyro[3], float accel[3], float *temperate)

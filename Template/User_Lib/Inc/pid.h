@@ -1,21 +1,5 @@
-/**
-  *******************************RM Warrior 2023********************************
-  * @file       pid.c/h
-  * @brief      pid实现函数，包括初始化，PID计算函数，
-  * @note       
-  * @history
-  *  Version    Date            Author          Modification
-  *  V1.0.0     2023-1-1        pxx             1. 完成
-  *
-  @verbatim
-  ==============================================================================
-
-  ==============================================================================
-  @endverbatim
-  *******************************RM Warrior 2023********************************
-  */
-#ifndef PID_H
-#define PID_H
+#ifndef __PID_H
+#define __PID_H
 
 #include "main.h"
 
@@ -47,7 +31,9 @@ typedef struct
     float error[3]; //误差项 0最新 1上一次 2上上次
 
 } PidTypeDef;
-extern void PID_Init(PidTypeDef *pid, uint8_t mode, const float PID[3], float max_out, float max_iout);
-extern float PID_Calc(PidTypeDef *pid, float ref, float set);
-extern void PID_clear(PidTypeDef *pid);
+
+void PID_Init(PidTypeDef *pid, uint8_t mode, const float PID[3], float max_out, float max_iout);
+float PID_Calc(PidTypeDef *pid, float ref, float set);
+void PID_clear(PidTypeDef *pid);
+
 #endif

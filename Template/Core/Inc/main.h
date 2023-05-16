@@ -59,6 +59,8 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define IST8310_RSTN_Pin GPIO_PIN_6
 #define IST8310_RSTN_GPIO_Port GPIOG
+#define IMU_Heat_Pin GPIO_PIN_6
+#define IMU_Heat_GPIO_Port GPIOF
 #define LED_R_Pin GPIO_PIN_12
 #define LED_R_GPIO_Port GPIOH
 #define IST8310_DRDY_Pin GPIO_PIN_3
